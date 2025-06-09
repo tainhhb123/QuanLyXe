@@ -65,7 +65,7 @@ public class XeController {
         xeService.save(xe);
         return "redirect:/xe/create";
     }
-
+//chức năng 2
     @GetMapping("/list")
     public String listXeWithLichTrinh(
             @RequestParam(value = "keyword", required = false) String keyword,
@@ -77,17 +77,19 @@ public class XeController {
         return "xe-list";
     }
 
-    // Màn hình danh sách lịch trình của 1 xe
-    @GetMapping("/lichtrinh")
-    public String listLichTrinhOfXe(@RequestParam("maXe") String maXe, Model model) {
-        List<LichTrinhXe> dsLichTrinh = lichTrinhXeRepository.findByXe_MaXe(maXe);
-        Xe xe = xeRepository.findById(maXe).orElse(null);
-        // KHẮC PHỤC: Nếu dsLichTrinh null thì gán bằng list rỗng
-        if (dsLichTrinh == null) dsLichTrinh = new ArrayList<>();
-        model.addAttribute("dsLichTrinh", dsLichTrinh);
-        model.addAttribute("xe", xe);
-        return "xe-lichtrinh-list";
-    }
+
+
+//    // Màn hình danh sách lịch trình của 1 xe
+//    @GetMapping("/lichtrinh")
+//    public String listLichTrinhOfXe(@RequestParam("maXe") String maXe, Model model) {
+//        List<LichTrinhXe> dsLichTrinh = lichTrinhXeRepository.findByXe_MaXe(maXe);
+//        Xe xe = xeRepository.findById(maXe).orElse(null);
+//        // KHẮC PHỤC: Nếu dsLichTrinh null thì gán bằng list rỗng
+//        if (dsLichTrinh == null) dsLichTrinh = new ArrayList<>();
+//        model.addAttribute("dsLichTrinh", dsLichTrinh);
+//        model.addAttribute("xe", xe);
+//        return "xe-lichtrinh-list";
+//    }
 
     // Hiển thị form nhập lịch trình
     @GetMapping("/lichtrinh/add")
@@ -127,6 +129,7 @@ public class XeController {
         lichTrinhXeRepository.save(lichTrinhXe);
 
         // Quay lại list lịch trình xe
-        return "redirect:/xe/lichtrinh?maXe=" + maXe;
+//        return "redirect:/xe/lichtrinh?maXe=" + maXe;
+        return "redirect:/xe/list";
     }
 }
