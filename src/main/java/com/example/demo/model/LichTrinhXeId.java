@@ -16,5 +16,4 @@ public class LichTrinhXeId implements Serializable {
     private String maXe;
     private String ngayXuatBen;
     private String gioXuatBen;
-
 }

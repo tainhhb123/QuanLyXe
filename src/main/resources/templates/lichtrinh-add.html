@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm Lịch Trình Xe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5" style="max-width:600px;">
+    <h3 class="mb-4 text-center">Thêm Lịch Trình Cho Xe <span th:text="${maXe}"></span></h3>
+    <form th:action="@{/xe/lichtrinh/add(maXe=${maXe})}" th:object="${lichTrinhXe}" method="post">
+        <input type="hidden" th:field="*{id.maXe}" th:value="${maXe}" />
+        <div class="mb-3">
+            <label class="form-label">Ngày xuất bến:</label>
+            <input type="date" th:field="*{id.ngayXuatBen}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Giờ xuất bến:</label>
+            <input type="time" th:field="*{id.gioXuatBen}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tên tài xế:</label>
+            <input type="text" th:field="*{tenTaiXe}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tuyến xe:</label>
+            <select th:field="*{tuyenXe.maTuyen}" class="form-select" name="tuyenXe.maTuyen" required>
+                <option th:each="tx : ${dsTuyenXe}" th:value="${tx.maTuyen}" th:text="${tx.tenTuyen}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Số lượng hành khách:</label>
+            <input type="number" th:field="*{soLuongHanhKhach}" class="form-control" min="1" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary px-5">Thêm lịch trình</button>
+            <a th:href="@{/xe/lichtrinh(maXe=${maXe})}" class="btn btn-secondary ms-2">Quay lại</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -18,7 +18,7 @@ public class Xe {
     private String maXe;
     private String hangSanXuat;
     private String bienSo;
-    private Date hanKiemDinh;
+    private LocalDate hanKiemDinh;
 
     @ManyToOne
     @JoinColumn (name = "maLoaiXe")

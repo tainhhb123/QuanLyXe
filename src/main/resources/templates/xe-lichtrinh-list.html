@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh Sách Lịch Trình Xe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h4 class="mb-4 text-center" th:text="'Danh Sách Lịch Trình Xe: ' + ${xe.maXe} + ' - ' + ${xe.bienSo}"></h4>
+    <div class="mb-3">
+        <a th:href="@{/xe/lichtrinh/add(maXe=${xe.maXe})}" class="btn btn-success">+ Thêm Lịch Trình Mới</a>
+        <a href="/xe/list" class="btn btn-secondary ms-2">Quay lại danh sách xe</a>
+    </div>
+    <div th:if="${#lists.isEmpty(dsLichTrinh)}" class="alert alert-warning text-center">
+        Xe này chưa có lịch trình nào.
+    </div>
+    <div th:unless="${#lists.isEmpty(dsLichTrinh)}" class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-primary text-center">
+            <tr>
+                <th>Ngày xuất bến</th>
+                <th>Giờ xuất bến</th>
+                <th>Tên tài xế</th>
+                <th>Mã tuyến</th>
+                <th>Tên tuyến</th>
+                <th>Số lượng hành khách</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lt : ${dsLichTrinh}">
+                    <td th:text="${lt.id.ngayXuatBen}"></td>
+                    <td th:text="${lt.id.gioXuatBen}"></td>
+                    <td th:text="${lt.tenTaiXe}"></td>
+                    <td th:text="${lt.tuyenXe.maTuyen}"></td>
+                    <td th:text="${lt.tuyenXe.tenTuyen}"></td>
+                    <td th:text="${lt.soLuongHanhKhach}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
